@@ -19,29 +19,38 @@ class _AccountScreenState extends State<AccountScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Stack(children: [
-          Image.asset(
-            'assets/images/profile_header.png',
-            width: MediaQuery.of(context).size.width,
-          ),
-          Positioned(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 24, right: 24, top: 230),
+        child: SingleChildScrollView(
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+            Image.asset(
+              'assets/images/profile_header.png',
+              width: MediaQuery.of(context).size.width,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    accData.name!,
-                    style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: AppColor.primaryColor3),
+                  Center(
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: Text(
+                        accData.name!,
+                        maxLines: 3,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: AppColor.primaryColor3),
+                      ),
+                    ),
                   ),
                   const SizedBox(
                     height: 5.0,
                   ),
                   Text(
                     accData.email!,
+                    maxLines: 3,
                     style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.normal,
@@ -163,11 +172,14 @@ class _AccountScreenState extends State<AccountScreen> {
                           ),
                         )),
                   ),
+                  const SizedBox(
+                  height: 50.0,
+                  ),
                 ],
               ),
             ),
-          ),
-        ]),
+          ]),
+        ),
       ),
     );
   }

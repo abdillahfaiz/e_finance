@@ -46,12 +46,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Hello ${accData.name},',
-                        style: const TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                          color: AppColor.primaryColor1,
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: Text(
+                          'Hello ${accData.name},',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 3,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: AppColor.primaryColor1,
+                          ),
                         ),
                       ),
                       const Text(
@@ -154,6 +159,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                           Text(
                                             data.title,
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 3,
                                             style: const TextStyle(
                                                 fontSize: 32,
                                                 fontWeight: FontWeight.bold),
@@ -334,6 +341,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     height: 10.0,
                                                   ),
                                                   TextField(
+                                                    maxLength: 15,
                                                     controller:
                                                         amountTextController,
                                                     decoration:
@@ -571,6 +579,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void deleteData(int index) {
     setState(() {
+      sisaSaldo = sisaSaldo - financeData[index].amount;
       financeData.removeAt(index);
     });
   }
@@ -746,6 +755,7 @@ class _Card extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: Text(
               sisaSaldo,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(
                   fontSize: sisaSaldo.characters.length > 9 ? 28 : 32,
                   fontWeight: FontWeight.w600,
